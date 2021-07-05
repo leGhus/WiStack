@@ -1,0 +1,53 @@
+{
+  "name": "wistack",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "leGhus <guillaume.houis@gmail.com>",
+  "repository": "https://github.com/leGhus/WiStack.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.12",
+    "@types/express-session": "^1.17.3",
+    "@types/md5": "^2.3.0",
+    "@types/passport": "^1.0.6",
+    "@types/passport-facebook": "^2.1.10",
+    "@types/passport-google-oauth": "^1.0.41",
+    "@types/passport-local": "^1.0.33",
+    "@types/validator": "^13.6.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "local": "^0.3.3",
+    "md5": "^2.3.0",
+    "mongoose": "^5.13.2",
+    "nodemon": "^2.0.9",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-auth": "^1.0.2",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5",
+    "validator": "^13.6.0"
+  }
+}
