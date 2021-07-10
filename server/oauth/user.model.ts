@@ -24,7 +24,7 @@ export interface IExposedUser {
   sign_date?: string | Date;
 }
 
-export function getExposeUser(user: IUser): IExposedUser {
+export function getExposedUser(user: IUser): IExposedUser {
   return {
     _id: user._id,
     f_name: user.f_name,
