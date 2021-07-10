@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import cors from 'cors';
-import { errorMiddleware } from './middlewares/error.middleware';
+import { errorMiddleware } from './middlewares/error/error.middleware';
 import { useAuth } from './oauth';
 
 const uri = ``;

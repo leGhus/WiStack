@@ -1,6 +1,6 @@
 import md5 from 'md5';
 import User, { IUser } from './user.model';
-import { BadRequestError, WS_ERRORS } from '../others/errors';
+import { BadRequestError, WS_ERRORS } from '../middlewares/error/errors';
 
 export async function lCreate(user: {
   email: string;

@@ -5,7 +5,7 @@ import AuthService from './auth.service';
 import './passport';
 import validator from 'validator';
 import isEmail = validator.isEmail;
-import { BadRequestError, ProjectError, WS_ERRORS } from '../others/errors';
+import { BadRequestError, ProjectError, WS_ERRORS } from '../middlewares/error/errors';
 import isEmpty = validator.isEmpty;
 import isStrongPassword = validator.isStrongPassword;
 import config from '../others/config';
@@ -67,7 +67,7 @@ authController.post(
     try {
       const { email, password } = req.body;
       validateSignIn({ email, password });
-      passport.authenticate('local', (err, user, info) => {
+      passport.authenticate('local', (err, user) => {
         if (err) throw err;
         if (!user) throw new ProjectError(WS_ERRORS.ERROR);
         req.logIn(user, function (err) {

@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import User, { getExposeUser, IUser } from './user.model';
-import { ProjectError, WS_ERRORS } from '../others/errors';
+import { ProjectError, WS_ERRORS } from '../middlewares/error/errors';
 
 passport.serializeUser(function (user: Express.User, done) {
   const usr: IUser = user as IUser;

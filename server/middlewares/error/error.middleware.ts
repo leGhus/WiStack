@@ -1,5 +1,5 @@
 import express from 'express';
-import { CustomError, WS_ERRORS } from '../others/errors';
+import { CustomError, WS_ERRORS } from './errors';
 
 export function errorMiddleware(
   error: CustomError,
