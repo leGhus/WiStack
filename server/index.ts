@@ -4,16 +4,16 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import cors from 'cors';
-import { errorMiddleware } from './middlewares/error/error.middleware';
 import { useAuth } from './oauth';
+import config from './others/config';
 
-const uri = ``;
+const uri = config.mongoUrl;
 
 const app = express();
 
 app.use('/api/static', express.static(__dirname + '/public'));
 
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -35,9 +35,6 @@ app.use(
 
 useAuth(app);
 
-app.use(errorMiddleware)
-
-
 // Connection to database
 mongoose
   .connect(uri, {
@@ -54,4 +51,4 @@ mongoose
     });
   })
   // eslint-disable-next-line no-console
-  .catch((e: any) => console.log(e));
+  .catch((e: unknown) => console.log(e));
