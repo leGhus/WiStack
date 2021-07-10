@@ -1,6 +1,48 @@
 import md5 from 'md5';
 import User, { IUser } from './user.model';
-import { BadRequestError, WS_ERRORS } from '../middlewares/error/errors';
+import { BadRequestError, ConflictError, WS_ERRORS } from '../middlewares/error/errors';
+import { Profile as FacebookProfile } from 'passport-facebook';
+import { Profile as GoogleProfile } from 'passport-google-oauth';
+
+export async function fFindOrCreate(profile: FacebookProfile): Promise<IUser> {
+  const user: IUser | null = await User.findOne({ _fid: profile.id });
+  if (user) return user;
+  if (profile?._json?.email) {
+    const checkEmail = await User.findOne({ email: profile?._json?.email });
+    if (checkEmail) throw new ConflictError(WS_ERRORS.EXISTING_EMAIL);
+  }
+  const newUser = new User({
+    _fid: profile?._json?.id,
+    f_name: profile?._json?.first_name,
+    l_name: profile?._json?.last_name,
+    email: profile?._json?.email,
+    sign_date: new Date(),
+    confirmed: !!profile?._json?.email,
+    status: 'member',
+  });
+  await newUser.save();
+  return newUser;
+}
+
+export async function gFindOrCreate(profile: GoogleProfile): Promise<IUser> {
+  const user: IUser | null = await User.findOne({ _gid: profile.id });
+  if (user) return user;
+  if (profile?._json?.email) {
+    const checkEmail = await User.findOne({ email: profile?._json?.email });
+    if (checkEmail) throw new ConflictError(WS_ERRORS.EXISTING_EMAIL);
+  }
+  const newUser = new User({
+    _gid: profile?._json?.sub,
+    f_name: profile?._json?.given_name,
+    l_name: profile?._json?.family_name,
+    email: profile?._json?.email,
+    sign_date: new Date(),
+    confirmed: !!profile?._json?.email,
+    status: 'member',
+  });
+  await newUser.save();
+  return newUser;
+}
 
 export async function lCreate(user: {
   email: string;
@@ -28,7 +70,9 @@ export async function lCreate(user: {
 }
 
 const AuthService = {
-  lCreate,
+  fFindOrCreate,
+  gFindOrCreate,
+  lCreate
 };
 
 export default AuthService;

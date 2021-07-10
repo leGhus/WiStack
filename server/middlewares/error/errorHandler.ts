@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import { CustomError, WS_ERRORS } from './errors';
 
-export function errorMiddleware(
+export function errorHandler(
   error: CustomError,
   req: express.Request,
   res: express.Response,
